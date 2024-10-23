@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Provider } from 'react-native-paper';
 import { auth } from '../firebaseconfig'; // Importando Firebase
 
 export default function Login({ navigation }) {
@@ -28,51 +29,53 @@ export default function Login({ navigation }) {
   };
 
   return (
-    <ImageBackground
-      source={require('../assets/fundo.png')} // Coloque o caminho da sua imagem aqui
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <View style={styles.overlay} />
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Entrar</Text>
+    <Provider>
+      <ImageBackground
+        source={require('../assets/fundo.png')} // Coloque o caminho da sua imagem aqui
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <View style={styles.overlay} />
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Entrar</Text>
 
-        <TextInput
-          placeholder="Email"
-          placeholderTextColor="#B0B0B0"
-          style={styles.input}
-          value={email}
-          onChangeText={setEmail}
-        />
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#B0B0B0"
+            style={styles.input}
+            value={email}
+            onChangeText={setEmail}
+          />
 
-        <TextInput
-          placeholder="Senha"
-          placeholderTextColor="#B0B0B0"
-          secureTextEntry
-          style={styles.input}
-          value={senha}
-          onChangeText={setSenha}
-        />
+          <TextInput
+            placeholder="Senha"
+            placeholderTextColor="#B0B0B0"
+            secureTextEntry
+            style={styles.input}
+            value={senha}
+            onChangeText={setSenha}
+          />
 
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Esqueceu Senha?</Text>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.forgotPassword}>Esqueceu Senha?</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.signupButton}
-          onPress={() => navigation.navigate('Cadastro')}
-        >
-          <Text style={styles.signupText}>Cadastrar</Text>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.signupButton}
+            onPress={() => navigation.navigate('Cadastro')}
+          >
+            <Text style={styles.signupText}>Cadastrar</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.loginButton} 
-          onPress={handleLogin}
-        >
-          <Text style={styles.loginText}>Entrar</Text>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
+          <TouchableOpacity 
+            style={styles.loginButton} 
+            onPress={handleLogin}
+          >
+            <Text style={styles.loginText}>Entrar</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    </Provider>
   );
 }
 
